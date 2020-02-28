@@ -32,9 +32,16 @@
 
 ## Создание модели (в blog/models.py)
 
-Model fields:
+* Model fields:
 https://docs.djangoproject.com/en/1.11/ref/models/fields/
 
 ## Создание таблиц моделей
 1. `python manage.py makemigrations blog` (Создание файла с миграцией для базы данных)
+
 2. `python manage.py migrate blog` (Добавление модели в базу данных)
+
+## Администрирование Django
+1. Чтобы модель стала доступна на странице администрирования, нужно её зарегистрировать (admin.py) `admin.site.register(<Model>)`. 
+    * Страница http://127.0.0.1:5000/admin/
+2. Создание superuser
+    * `python manage.py createsuperuser`
