@@ -45,3 +45,12 @@ https://docs.djangoproject.com/en/1.11/ref/models/fields/
     * Страница http://127.0.0.1:5000/admin/
 2. Создание superuser
     * `python manage.py createsuperuser`
+
+## Heroku
+1. A database is an add-on `heroku addons`
+
+2. DATABASE_URL `heroku config` `heroku pg:credentials:url DATABASE`
+
+3. postgres `heroku pg`
+
+3. `heroku run python manage.py migrate` if it is showing ETIMEDOUT then your port 5000 is blocked
