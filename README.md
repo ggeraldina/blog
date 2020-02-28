@@ -23,3 +23,5 @@
     * django-heroku
 
 5. `ALLOWED_HOSTS = ['localhost', 'geraldina-blog.herokuapp.com']`
+## Django
+* Собрать статические файлы в STATIC_ROOT `python manage.py collectstatic`
