@@ -43,9 +43,9 @@
 https://docs.djangoproject.com/en/1.11/ref/models/fields/
 
 ## Создание таблиц моделей
-1. `python manage.py makemigrations blog` (Создание файла с миграцией для базы данных)
+1. `python manage.py makemigrations` (Создание файла с миграцией для базы данных)
 
-2. `python manage.py migrate blog` (Добавление модели в базу данных)
+2. `python manage.py migrate` (Добавление модели в базу данных)
 
 ## Администрирование Django
 1. Чтобы модель стала доступна на странице администрирования, нужно её зарегистрировать (admin.py) `admin.site.register(<Model>)`. 
@@ -61,3 +61,5 @@ https://docs.djangoproject.com/en/1.11/ref/models/fields/
 3. postgres `heroku pg`
 
 4. `heroku run python manage.py migrate` if it is showing ETIMEDOUT then your port 5000 is blocked
+
+5. heroku run python manage.py createsuperuser
