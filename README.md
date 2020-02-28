@@ -70,3 +70,5 @@ https://docs.djangoproject.com/en/1.11/ref/models/fields/
 2. Добавление view
 
 3. Добавление html
+
+4. Использование шаблонов Django `{{ }}` и `{% %}`, которые позволяют вставлять Python в HTML
