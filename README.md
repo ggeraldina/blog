@@ -62,7 +62,7 @@ https://docs.djangoproject.com/en/1.11/ref/models/fields/
 
 4. `heroku run python manage.py migrate` if it is showing ETIMEDOUT then your port 5000 is blocked
 
-5. heroku run python manage.py createsuperuser
+5. `heroku run python manage.py createsuperuser`
 
 ## Создание страниц
 1. Добавление URL
