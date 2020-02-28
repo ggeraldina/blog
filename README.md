@@ -26,6 +26,13 @@
     * django-heroku
 
 5. `ALLOWED_HOSTS = ['localhost', 'geraldina-blog.herokuapp.com']`
+6. settings.py
+
+    ```
+    import django_heroku
+    ...
+    django_heroku.settings(locals())
+    ```
 
 > ## Django
 > * Собрать статические файлы в STATIC_ROOT `python manage.py collectstatic`
@@ -53,4 +60,4 @@ https://docs.djangoproject.com/en/1.11/ref/models/fields/
 
 3. postgres `heroku pg`
 
-3. `heroku run python manage.py migrate` if it is showing ETIMEDOUT then your port 5000 is blocked
+4. `heroku run python manage.py migrate` if it is showing ETIMEDOUT then your port 5000 is blocked
