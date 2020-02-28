@@ -1,19 +1,36 @@
+{% load static %}
 <html>
     <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link  rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
         <title>Book's blog</title>
     </head>
     <body>
-        <div>
+        <div class="page-header">
             <h1><a href="/">Book's Blog</a></h1>
         </div>
         
-        {% for post in posts %}
-            <div>
-                <p><hr>Опубликовано: {{ post.published_date }}</p>
-                <h2><a href="">{{post.title}}</a></h2>
-                <p>{{ post.text|linebreaksbr }}</p>                
-            </div>                
-        {% endfor %}
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% for post in posts %}
+                        <div class="post">
+                            <div class="date">
+                                <p>Опубликовано: {{ post.published_date }}</p>
+                            </div>
+                            <h1><a href="">{{ post.title }}</a></h1>
+                            <p>{{ post.text|linebreaksbr }}</p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
         
     </body>
 </html>

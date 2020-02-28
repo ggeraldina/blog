@@ -72,3 +72,7 @@ https://docs.djangoproject.com/en/1.11/ref/models/fields/
 3. Добавление html
 
 4. Использование шаблонов Django `{{ }}` и `{% %}`, которые позволяют вставлять Python в HTML
+
+5. Добавление CSS
+
+    urls.py `urlpatterns = [...] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)`
