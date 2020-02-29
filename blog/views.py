@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from .models import Post
 from .forms import PostForm
@@ -14,9 +14,18 @@ def post_detail(request, pk):
     return render(request, 'blog/post_detail.html', data)
 
 def post_new(request):
-    form = PostForm()
-    data = {'form': form}
-    return render(request, 'blog/post_edit.html', data)
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.published_date = timezone.now()
+            post.save()
+            return redirect('post_detail', pk=post.pk)
+    else:
+        form = PostForm()
+        data = {'form': form}
+        return render(request, 'blog/post_edit.html', data)
 
 def page_not_found(request, exception):
     return render(request, 'blog/page_not_found.html', status=404)
