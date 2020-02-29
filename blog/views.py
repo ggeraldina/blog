@@ -13,15 +13,18 @@ def post_detail(request, pk):
     data = {'post': post}
     return render(request, 'blog/post_detail.html', data)
 
+def save_new_post(request_post_new):
+    form = PostForm(request_post_new.POST)
+    if form.is_valid():
+        post = form.save(commit=False)
+        post.author = request_post_new.user
+        post.published_date = timezone.now()
+        post.save()
+        return redirect('post_detail', pk=post.pk)
+
 def post_new(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
-            return redirect('post_detail', pk=post.pk)
+        return save_new_post(request)
     else:
         form = PostForm()
         data = {'form': form}
