@@ -13,8 +13,8 @@ def post_detail(request, pk):
     data = {'post': post}
     return render(request, 'blog/post_detail.html', data)
 
-def save_new_post(request_post_new):
-    form = PostForm(request_post_new.POST)
+def save_post(request_post_new, instance_post=None):
+    form = PostForm(request_post_new.POST, instance=instance_post)
     if form.is_valid():
         post = form.save(commit=False)
         post.author = request_post_new.user
@@ -24,9 +24,18 @@ def save_new_post(request_post_new):
 
 def post_new(request):
     if request.method == 'POST':
-        return save_new_post(request)
+        return save_post(request)
     else:
         form = PostForm()
+        data = {'form': form}
+        return render(request, 'blog/post_edit.html', data)
+
+def post_edit(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    if request.method == "POST":
+        return save_post(request, post)
+    else:
+        form = PostForm(instance=post)
         data = {'form': form}
         return render(request, 'blog/post_edit.html', data)
 
