@@ -8,8 +8,7 @@ def post_list(request):
     return render(request, 'blog/post_list.html', date)
 
 def post_detail(request, pk):
-    # post = get_object_or_404(Post, pk=pk) # whitout 500 server error
-    post = Post.objects.get(pk=pk) # 500 server error
+    post = Post.objects.get(pk=pk)
     date = { 'post': post }
     return render(request, 'blog/post_detail.html', date)
 
