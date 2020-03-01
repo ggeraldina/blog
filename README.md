@@ -39,13 +39,13 @@
 
 ## Создание модели (в blog/models.py)
 
-* Model fields:
+1. Model fields:
 https://docs.djangoproject.com/en/1.11/ref/models/fields/
 
-## Создание таблиц моделей
-1. `python manage.py makemigrations` (Создание файла с миграцией для базы данных)
+    ### Создание таблиц моделей
+    * `python manage.py makemigrations` (Создание файла с миграцией для базы данных)
 
-2. `python manage.py migrate` (Добавление модели в базу данных)
+    * `python manage.py migrate` (Добавление модели в базу данных)
 
 3. Чтобы модель стала доступна на странице администрирования, нужно её зарегистрировать (admin.py) `admin.site.register(<Model>)`. 
     * Страница http://127.0.0.1:5000/admin/    
@@ -56,26 +56,27 @@ https://docs.djangoproject.com/en/1.11/ref/models/fields/
     * `python manage.py createsuperuser`
 
 ## Heroku
-1. A database is an add-on `heroku addons`
+1. База данных — это add-on `heroku addons`
 
-2. DATABASE_URL `heroku config` `heroku pg:credentials:url DATABASE`
+2. DATABASE_URL `heroku config` или `heroku pg:credentials:url DATABASE`
 
-3. postgres `heroku pg`
+3. Postgres `heroku pg`
 
 4. `heroku run python manage.py migrate` if it is showing ETIMEDOUT then your port 5000 is blocked
 
 5. `heroku run python manage.py createsuperuser`
 
 ## Создание страниц
-1. Добавление URL
+1. Добавить URL
 
-2. Добавление view
+2. Добавить view
 
-3. Добавление html
+3. Добавить html
 
-4. Использование шаблонов Django `{{ }}` и `{% %}`, которые позволяют вставлять Python в HTML
+4. Использовать шаблоны Django `{{ }}` и `{% %}`, которые позволяют вставлять Python в HTML
+https://docs.djangoproject.com/en/3.0/ref/templates/builtins/
 
-5. Добавление CSS
+5. Добавить CSS
 
     urls.py `urlpatterns = [...] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)`
 
@@ -85,28 +86,25 @@ https://docs.djangoproject.com/en/1.11/ref/models/fields/
 * Model forms:
 https://docs.djangoproject.com/en/3.0/topics/forms/modelforms/
 
-* Шаблоны
-https://docs.djangoproject.com/en/3.0/ref/templates/builtins/
-
 ## Администрирование
 
 1. Защита страниц от неавторизованных пользователей 
     ```
     from django.contrib.auth.decorators import login_required
-    @login_required`
+    @login_required
     ```
 2. Вход в систему 
     * В `blog_project/urls.py` добавить `from django.contrib.auth import views` и `urlpath('accounts/login/', views.LoginView.as_view(), name='login')`
 
     * Создать шаблон для страницы входа в систему `blog/templates/registration/login.html`
 
-    * LOGIN_REDIRECT_URL = '/'
+    * `LOGIN_REDIRECT_URL = '/'`
 
     * Добавить кнопку входа в систему с `href="{% url 'login' %}"`
 
 3. Выход из системы
     * В `blog_project/urls.py` добавить `path('accounts/logout/', views.LogoutView.as_view(next_page='/'), name='logout'),`
 
-    * LOGOUT_REDIRECT_URL = '/'
+    * `LOGOUT_REDIRECT_URL = '/'`
     
     * Добавить кнопку выхода из системы с `href="{% url 'logout' %}"`
