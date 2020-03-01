@@ -78,7 +78,9 @@ https://docs.djangoproject.com/en/3.0/ref/templates/builtins/
 
 5. Добавить CSS
 
-    urls.py `urlpatterns = [...] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)`
+    * https://getbootstrap.com/docs/3.4/components/
+
+    * urls.py `urlpatterns = [...] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)`
 
    
 ## Создание форм (в blog/forms.py)
