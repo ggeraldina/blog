@@ -76,3 +76,7 @@ h1, h2, h3, h4 {
     font-family: 'Lobster', cursive;
     font-size: 16pt;
 }
+
+.login_input input{
+    width: 100%;
+}
