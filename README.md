@@ -1,6 +1,6 @@
 ## Создание проекта
 1. requirements.txt (Зависимости)
-2. `django-admin startproject name_project .`
+2. `django-admin startproject blog_project .`
 3. Настройка
   
     * `TIME_ZONE = 'Europe/Moscow'`
@@ -47,10 +47,12 @@ https://docs.djangoproject.com/en/1.11/ref/models/fields/
 
 2. `python manage.py migrate` (Добавление модели в базу данных)
 
+3. Чтобы модель стала доступна на странице администрирования, нужно её зарегистрировать (admin.py) `admin.site.register(<Model>)`. 
+    * Страница http://127.0.0.1:5000/admin/    
+
 ## Администрирование Django
-1. Чтобы модель стала доступна на странице администрирования, нужно её зарегистрировать (admin.py) `admin.site.register(<Model>)`. 
-    * Страница http://127.0.0.1:5000/admin/
-2. Создание superuser
+
+1. Создание superuser
     * `python manage.py createsuperuser`
 
 ## Heroku
@@ -76,3 +78,35 @@ https://docs.djangoproject.com/en/1.11/ref/models/fields/
 5. Добавление CSS
 
     urls.py `urlpatterns = [...] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)`
+
+   
+## Создание форм (в blog/forms.py)
+
+* Model forms:
+https://docs.djangoproject.com/en/3.0/topics/forms/modelforms/
+
+* Шаблоны
+https://docs.djangoproject.com/en/3.0/ref/templates/builtins/
+
+## Администрирование
+
+1. Защита страниц от неавторизованных пользователей 
+    ```
+    from django.contrib.auth.decorators import login_required
+    @login_required`
+    ```
+2. Вход в систему 
+    * В `blog_project/urls.py` добавить `from django.contrib.auth import views` и `urlpath('accounts/login/', views.LoginView.as_view(), name='login')`
+
+    * Создать шаблон для страницы входа в систему `blog/templates/registration/login.html`
+
+    * LOGIN_REDIRECT_URL = '/'
+
+    * Добавить кнопку входа в систему с `href="{% url 'login' %}"`
+
+3. Выход из системы
+    * В `blog_project/urls.py` добавить `path('accounts/logout/', views.LogoutView.as_view(next_page='/'), name='logout'),`
+
+    * LOGOUT_REDIRECT_URL = '/'
+    
+    * Добавить кнопку выхода из системы с `href="{% url 'logout' %}"`
