@@ -67,3 +67,12 @@ h1, h2, h3, h4 {
 .btn {
     height: 30;
 }
+
+.login_form {
+    padding: 5px;
+}
+
+.login_label {
+    font-family: 'Lobster', cursive;
+    font-size: 16pt;
+}

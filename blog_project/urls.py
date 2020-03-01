@@ -18,6 +18,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls import handler404, handler500
 from django.conf.urls.static import static
+from django.contrib.auth.views import LoginView
 
 from blog import views
 handler404 = views.page_not_found
@@ -26,4 +27,5 @@ handler500 = views.page_server_error
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
+    path('accounts/login/', LoginView.as_view(), name='login'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
